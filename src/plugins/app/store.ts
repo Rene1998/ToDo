@@ -7,5 +7,5 @@ export default createStore({
   actions: {},
   modules: {
 		todoStore
-	},
+	}
 })
