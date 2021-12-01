@@ -31,3 +31,17 @@ export interface IState {
 export interface ICreateNewToDoListForm {
 	title: string
 }
+
+export interface ICreateNewToDoForm extends ICreateNewToDoListForm {
+	text: string,
+	deadline: string
+}
+
+export enum EFilterTypes {
+	mostRecent = 'Most recent',
+	alphabetical = 'Alphabetical',
+	deadline = 'Deadline',
+	is_completed = 'Completed',
+	is_edited = 'Edited',
+	is_removed = 'Removed',
+}
