@@ -1,17 +1,17 @@
 <template>
 	<transition name="bounce">
-		<div class="d-flex justify-content-center align-items-center flex-column" v-if="isCreateNewToDoFormShown">
-			<form class="col-8 d-flex align-items-end rounded p-2"
+		<div class="d-flex justify-content-center col-8 align-items-center flex-column" v-if="isCreateNewToDoFormShown">
+			<form class=" d-flex align-items-end rounded p-2"
 				@submit.prevent="emitCreateNewToDo()">
 				<div class="w-100">
 					<div class="d-flex align-items-start justify-content-between">
-						<div>
+						<div class="col-6">
 							<p>Title:</p>
-							<input v-model="createNewToDoForm.title"
+							<input class="mr-5" v-model="createNewToDoForm.title"
 								@focus="focusedInField = true"
 								@blur="focusedInField = false"/>
 						</div>
-						<div>
+						<div class="col-3">
 							<p>Deadline:</p>
 							<div>
 								<input type="date" v-model="createNewToDoForm.deadlineDate"
@@ -25,7 +25,7 @@
 					</div>
 					<div>
 						<p class="text-center">Description:</p>
-						<textarea class="w-full" v-model="createNewToDoForm.text"
+						<textarea v-model="createNewToDoForm.text"
 							@focus="focusedInField = true"
 							@blur="focusedInField = false"/>
 					</div>
@@ -34,7 +34,7 @@
 					:class="[{'cursor-pointer': !v.$invalid}, {'opacity-50': v.$invalid}]" :disabled="v.$invalid"/>
 			</form>
 			<div class="d-flex justify-content-center w-100"
-				v-if="isCreateNewToDoFormShown && (v.$silentErrors.length && focusedInField)">
+				>
 				<ul class="alert alert-danger d-flex align-items-center col-8 mb-2 mt-2 flex-column"
 					role="alert" >
 					<li class="error-message text-start" v-for="error of v.$silentErrors" :key="error.$uid">
@@ -115,10 +115,18 @@ const emitCreateNewToDo = () => {
 </script>
 
 <style lang="sass" scoped>
+::v-deep .alert
+	padding-top: 1rem
+	li
+		font-size: 0.75rem !important
+
 input, textarea
 	outline: none
 	resize: none
 	border: 0
+	background-color: #FAFAFA
+	width: 100%
+	border-radius: 10px
 
 p, li
 	font-size: 0.5rem
@@ -128,6 +136,7 @@ p, li
 form
 	flex-direction: column
 	border: 0.1rem #efefef solid
+	width: 100%
 
 button
 	border: 0
