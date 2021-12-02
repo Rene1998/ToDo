@@ -25,11 +25,9 @@ const actions = {
 	// },
 
 	async createNewToDo({ commit }: { commit: Commit }, [toDo, todoListId] : [toDo: IToDo, todoListId: string]):Promise<any> {
-		try {
-			return await	apiService.post(`/todo-lists/${todoListId}/todolist/${todoListId}/todo`, toDo)
-		} catch (err) {
-			console.error(err)
-		}
+		await	apiService.post(`/todo-lists/${todoListId}/todolist/${todoListId}/todo`, toDo)
+			.then((res) => res && console.log(res))
+			.catch((err) => console.error(err))
 	},
 
 	async updateToDo({ commit }: { commit: Commit }, [updatedToDo, todoListId] : [updatedToDo: IToDo, todoListId: number]):Promise<void> {
@@ -42,7 +40,7 @@ const actions = {
 
 	async createNewToDoList({ commit }: { commit: Commit }, createNewToDoListForm: ICreateNewToDoListForm):Promise<void> {
 		try {
-			await apiService.post('todo-lists', createNewToDoListForm)
+			await apiService.post('/todo-lists', createNewToDoListForm)
 		} catch (err) {
 			console.error(err)
 		}

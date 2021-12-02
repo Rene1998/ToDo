@@ -18,7 +18,6 @@
 <script lang="ts" setup>
 import { onBeforeMount, ref } from 'vue'
 import { useStore } from 'vuex'
-import { _created_at } from '../../custom/dateUtil'
 import { IToDoList, ICreateNewToDoListForm } from '../todoStore/ITodo'
 import createNewToDoList from './createNewToDoList.vue'
 import createNewToDoListAlert from './createNewToDoListAlert.vue'

@@ -4,8 +4,8 @@
 			<h2 class="mt-5 mb-3 d-flex justify-content-center">{{ toDoList.title }}</h2>
 				<ZAddButton :isClosed="isCreateNewToDoFormShown"
 					@buttonClose="isCreateNewToDoFormShown = !isCreateNewToDoFormShown"/>
-				<createNewToDo v-if="isCreateNewToDoFormShown"
-					@createNewToDo="_createNewToDo" />
+				<createNewToDo
+					@createNewToDo="_createNewToDo" :isCreateNewToDoFormShown="isCreateNewToDoFormShown"/>
 				<h5 class="d-flex justify-content-center text-center mt-5">
 					Todos
 				</h5>
@@ -27,7 +27,6 @@
 
 <script lang="ts" setup>
 import { onBeforeMount, ref, computed } from 'vue'
-import moment from 'moment'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import { IToDoList, IToDo, EFilterTypes } from './todoStore/ITodo'
@@ -73,14 +72,14 @@ const sortedToDos = computed<IToDo[]>(() => {
 	return _sortedToDos
 })
 
+const _loadToDoList = async () => toDoList.value = await store
+	.dispatch('todoStore/loadToDoList', route.params.toDoListId)
 
 const _createNewToDo = async ($event: IToDo) => {
 	await store.dispatch('todoStore/createNewToDo', [$event, route.params.toDoListId])
 		.then(async () => await _loadToDoList())
 }
 
-const _loadToDoList = async () => toDoList.value = await store
-	.dispatch('todoStore/loadToDoList', route.params.toDoListId)
 
 onBeforeMount(async () => _loadToDoList())
 </script>
