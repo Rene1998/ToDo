@@ -2,7 +2,7 @@
 	<div class="container">
 		<div v-if="toDoList" class="row bg-white d-flex justify-content-center p-5 w-full">
 			<h2 class="mt-5 mb-3 d-flex justify-content-center">{{ toDoList.title }}</h2>
-				<ZAddButton :isClosed="isCreateNewToDoFormShown"
+				<z-add-button :isClosed="isCreateNewToDoFormShown"
 					@buttonClose="isCreateNewToDoFormShown = !isCreateNewToDoFormShown"/>
 				<createNewToDo
 					@createNewToDo="_createNewToDo" :isCreateNewToDoFormShown="isCreateNewToDoFormShown"/>
@@ -12,7 +12,7 @@
 				<div class="col-8">
 					<input class=" w-80 form-control mt-3 mb-1" placeholder="e.g. My ToDo" v-model="searchBar" />
 				</div>
-				<zFilterBar @filterChanged="selectedFilter = $event"/>
+				<z-filter-bar @filterChanged="selectedFilter = $event"/>
 				<zToDoCards v-if="toDoList?.toDos?.length"
 					:array="sortedToDos" :nestedHref="`/todolist/${toDoList.id}/todo/`"/>
 				<div class="mt-4 d-flex flex-column align-items-center" v-else>
@@ -29,11 +29,11 @@
 import { onBeforeMount, ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
-import { IToDoList, IToDo, EFilterTypes } from './todoStore/ITodo'
-import createNewToDo from './createNewToDo.vue'
-import zFilterBar from './_components/zFilterBar.vue'
-import ZAddButton from './_components/zAddButton.vue'
-import zToDoCards from './_components/zToDoCards.vue'
+import { IToDoList, IToDo, EFilterTypes } from '../todoStore/ITodo'
+import createNewToDo from '../todo/create-new-toDo.vue'
+import zFilterBar from '../_components/z-filter-bar.vue'
+import ZAddButton from '../_components/z-add-button.vue'
+import zToDoCards from '../_components/z-toDo-cards.vue'
 
 
 const store = useStore()

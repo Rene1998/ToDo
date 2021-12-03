@@ -140,7 +140,7 @@ form
 
 button
 	border: 0
-	background: #efefef url(../theme/svg/send.svg) no-repeat 
+	background: #efefef url(../../theme/svg/send.svg) no-repeat 
 	width: fit-content
 	width: 32px
 	height: 32px

@@ -4,7 +4,8 @@
 				<div v-if="toDo" class="mb-2 col-8 d-flex justify-content-center card"
 					:class="[{'successfull-border': !toDo.is_removed && toDo.is_completed}, {'opacity-50': toDo.is_removed}]">
 					<div class="card-body" v-if="editedToDo">
-						<createNewToDoListAlert :isAlertShown="isAlertShown"
+						<z-alert :isAlertShown="isAlertShown"
+							alertMessage="You have successfully edited this toDo!"
 							:message="'You have successfully updated this todo'"/>
 						<h5 class="card-title" v-if="!isEditable">{{ toDo.title }}</h5>
 						<input class="card-title form-input" v-model="editedToDo.title" v-else>
@@ -55,8 +56,8 @@ import { onBeforeMount, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 import { _endsIn, _created_at } from '@/plugins/custom/dateUtil'
-import { IToDo } from './todoStore/ITodo'
-import createNewToDoListAlert from './todoOverview/createNewToDoListAlert.vue'
+import { IToDo } from '../todoStore/ITodo'
+import zAlert from '../_components/z-alert.vue'
 
 const store = useStore()
 const route = useRoute()

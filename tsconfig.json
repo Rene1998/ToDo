@@ -32,7 +32,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/plugins/App.vue", "src/plugins/lib@todo/todoOverview.vue", "src/plugins/lib@todo/createNewToDoList.vue", "src/plugins/lib@todo/todoOverview/todoOverview.vue", "src/plugins/lib@todo/todoOverview/createNewToDoList.vue", "src/plugins/lib@todo/_components/zToDosCards.vue", "src/plugins/lib@todo/_components/zToDosCard.vue", "src/plugins/lib@todo/_components/zToDoCards.vue"  ],
+, "src/plugins/App.vue", "src/plugins/lib@todo/todoOverview.vue", "src/plugins/lib@todo/createNewToDoList.vue", "src/plugins/lib@todo/todoOverview/todoOverview.vue", "src/plugins/lib@todo/todoOverview/createNewToDoList.vue", "src/plugins/lib@todo/_components/zToDosCards.vue", "src/plugins/lib@todo/_components/zToDosCard.vue", "src/plugins/lib@todo/_components/zToDoCards.vue", "src/plugins/lib@todo/_components/z-add-button.vue", "src/plugins/lib@todo/_components/z-toDo-cards.vue"  ],
   "exclude": [
     "node_modules"
   ]

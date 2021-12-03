@@ -3,7 +3,7 @@
 		<div class="d-flex align-items-center">
 			<img src="@/plugins/theme/svg/check-circle-fill.svg">
 			<div class="alert-text">
-				You have successfully created a new ToDo list!
+				{{ alertMessage }}
 			</div>
 		</div>
 		<img class="cursor-pointer" src="@/plugins/theme/svg/x-lg.svg" @mousedown="emit('hideAlert')" data-bs-dismiss="alert" >
@@ -14,11 +14,13 @@
 import { defineProps, withDefaults, defineEmits } from 'vue'
 
 interface IProps {
-	isAlertShown: boolean
+	isAlertShown: boolean,
+	alertMessage: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-	isAlertShown: false
+	isAlertShown: false,
+	alertMessage: ''
 })
 
 const emit = defineEmits<{

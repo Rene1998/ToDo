@@ -1,9 +1,10 @@
 <template>
 	<div class="container vh-100">
 		<div class="row bg-white d-flex justify-content-center p-5 w-full">
-			<createNewToDoListAlert :isAlertShown="isAlertShown"
+			<z-alert :isAlertShown="isAlertShown"
+				alertMessage="You have successfully created a new ToDo list!"
 				@hideAlert="isAlertShown = false"/>
-			<ZAddButton :isClosed="isCreateNewToDoListFormShown"
+			<z-add-button :isClosed="isCreateNewToDoListFormShown"
 				@buttonClose="isCreateNewToDoListFormShown = !isCreateNewToDoListFormShown"/>
 			<createNewToDoList :isCreateNewToDoListFormShown="isCreateNewToDoListFormShown"
 				@createNewToDoList="_createNewToDoList"/>
@@ -19,10 +20,10 @@
 import { onBeforeMount, ref } from 'vue'
 import { useStore } from 'vuex'
 import { IToDoList, ICreateNewToDoListForm } from '../todoStore/ITodo'
-import createNewToDoList from './createNewToDoList.vue'
-import createNewToDoListAlert from './createNewToDoListAlert.vue'
-import ZAddButton from '../_components/zAddButton.vue'
-import zToDoCards from '../_components/zToDoCards.vue'
+import createNewToDoList from './create-new-toDo-list.vue'
+import zAlert from '../_components/z-alert.vue'
+import ZAddButton from '../_components/z-add-button.vue'
+import zToDoCards from '../_components/z-toDo-cards.vue'
 
 const store = useStore()
 const toDoLists = ref<IToDoList[] | null>(null)

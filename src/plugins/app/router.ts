@@ -13,10 +13,10 @@ const routes: Array<RouteRecordRaw> = [
 	},
 
 	cRoute('Homepage', '/home', () => import('@/plugins/app@home/homepage/homepage.vue')),
-	cRoute('Overview', '/overview', () => import('@/plugins/lib@todo/todoOverview/todoOverview.vue')),
+	cRoute('Overview', '/overview', () => import('@/plugins/lib@todo/todolists-overview/todolists-overview.vue')),
 	...prefixRoutes('/todolist/:toDoListId', [
-		cRoute('Todo list', '', () => import('@/plugins/lib@todo/todolist.vue')),
-		cRoute('Todo', 'todo/:todoId', () => import('@/plugins/lib@todo/todo.vue'))
+		cRoute('Todo list', '', () => import('@/plugins/lib@todo/todolist/todolist.vue')),
+		cRoute('Todo', 'todo/:todoId', () => import('@/plugins/lib@todo/todo/todo.vue'))
 	])
 ]
 
