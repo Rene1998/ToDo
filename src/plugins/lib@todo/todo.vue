@@ -9,12 +9,12 @@
 						<h5 class="card-title" v-if="!isEditable">{{ toDo.title }}</h5>
 						<input class="card-title form-input" v-model="editedToDo.title" v-else>
 						<h6 class="card-subtitle mb-2 text-muted">
-							Created at: {{ _created_at(toDo.createdAt) }}
+							Created at: {{ _created_at(toDo.created_at) }}
 						</h6>
 						<p class="card-text" v-if="!isEditable">{{ toDo.text }}</p>
 						<textarea class="card-text" v-model="editedToDo.text" v-else/>
 						<div class="d-flex justify-content-between align-items-center">
-							<p class="m-0 text-danger">Ends in: <b>{{ endsIn }}</b></p>
+							<p class="m-0 text-danger">{{ endsIn }}</p>
 							<div class="tool-bar d-flex flex-col align-items-start flex-nowrap" v-if="!toDo.is_removed">
 								<a class="cursor-pointer d-flex justify-content-end"
 									v-if="isEditable" @click="editToDo()">

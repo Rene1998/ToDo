@@ -16,66 +16,30 @@ const mutations = {
 }
 
 const actions = {
-	// async deleteToDo({ commit }: { commit: Commit }, [todoListId, todoId] : string[]):Promise<void> {
-	// 	try {
-	// 		await apiService.delete(`todo-lists/${todoListId}/todolist/${todoListId}/todo/${todoId}`)
-	// 	} catch (err) {
-	// 		console.error(err)
-	// 	}
-	// },
-
-	async createNewToDo({ commit }: { commit: Commit }, [toDo, todoListId] : [toDo: IToDo, todoListId: string]):Promise<any> {
-		await	apiService.post(`/todo-lists/${todoListId}/todolist/${todoListId}/todo`, toDo)
-			.then((res) => res && console.log(res))
-			.catch((err) => console.error(err))
+	async createNewToDo({ commit }: { commit: Commit }, [toDo, todoListId] : [toDo: IToDo, todoListId: string]):Promise<IToDo> {
+		return await	apiService.post(`/todolist/${todoListId}/toDo`, toDo)
 	},
 
-	async updateToDo({ commit }: { commit: Commit }, [updatedToDo, todoListId] : [updatedToDo: IToDo, todoListId: number]):Promise<void> {
-		try {
-			await	apiService.put(`todo-lists/${todoListId}/todolist/${todoListId}/todo/${updatedToDo.id}`, updatedToDo)
-		} catch (err) {
-			console.error(err)
-		}
+	async updateToDo({ commit }: { commit: Commit }, [updatedToDo, todoListId] : [updatedToDo: IToDo, todoListId: number]):Promise<IToDo> {
+		return await apiService.put(`/todolist/${todoListId}/toDo/${updatedToDo.id}`, updatedToDo)
 	},
 
 	async createNewToDoList({ commit }: { commit: Commit }, createNewToDoListForm: ICreateNewToDoListForm):Promise<void> {
-		try {
-			await apiService.post('/todo-lists', createNewToDoListForm)
-		} catch (err) {
-			console.error(err)
-		}
-	},
+		return await apiService.post('/todolist', createNewToDoListForm)
+	},	
 
 	async loadToDoLists({ commit }: { commit: Commit }):Promise<IToDoList[]> {
-		return await apiService.get('todo-lists').then((res) => {
-			commit('todolists_success', res)
-			return res
-		}).catch((err) => {
-			console.error(err)
-		})
+		const toDoLists: IToDoList[] = 	await apiService.get('todolist')
+		commit('todolists_success', toDoLists)
+		return toDoLists
 	},
 	
-	async loadToDoList({ dispatch }: { dispatch: Dispatch }, toDoListId: number):Promise<void> {
-		return await apiService.get(`todo-lists/${toDoListId}`).then((res) => {
-			return res.toDos.length ? dispatch('_loadToDos', res) : res
-		}).catch((err) => console.error(err))
+	async loadToDoList({ dispatch }: { dispatch: Dispatch }, toDoListId: number):Promise<IToDoList> {
+		return await apiService.get(`todolist/${toDoListId}`)
 	},
 
 	async loadToDo({ commit }: { commit: Commit }, [toDoListId, todoId]: string[]):Promise<IToDo> {
-		return await apiService.get(`todo-lists/${toDoListId}/todolist/${toDoListId}/todo/${todoId}`).then((res) => {
-			return res
-		}).catch((err) => console.error(err))
-	},
-
-	async _loadToDos({ commit }: { commit: Commit }, toDoList: IToDoList):Promise<IToDoList> {
-		const _toDoList: IToDoList = toDoList
-		try {
-			_toDoList.toDos = await apiService.get(`todo-lists/${toDoList.id}/todolist/${toDoList.id}/todo/`)
-			commit('todolists_success', _toDoList)
-		} catch (err) {
-			console.error(err)
-		}
-		return _toDoList
+		return await apiService.get(`/todolist/${toDoListId}/toDo/${todoId}`)
 	}
 }
 

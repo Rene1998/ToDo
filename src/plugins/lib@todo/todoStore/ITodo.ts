@@ -6,7 +6,7 @@
 // }
 
 export interface IToDo {
-	createdAt: number,
+	is_created: number,
 	title: string,
 	id: string,
 	text?: string,
@@ -18,7 +18,7 @@ export interface IToDo {
 }
 
 export interface IToDoList {
-	createdAt: number,
+	created_at: number,
 	title: string,
 	id: string,
 	toDos: IToDo[],

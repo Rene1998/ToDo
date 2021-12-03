@@ -5,7 +5,7 @@
 		<div class="card-body">
 			<h5 class="card-title">{{ toDo.title}} </h5>
 			<h6 class="card-subtitle mb-2 text-muted">
-				Created at: {{ _created_at(toDo.createdAt) }}
+				Created at: {{ _created_at(toDo.created_at) }}
 			</h6>
 			<p class="card-text" v-if="toDo.hasOwnProperty('text')">{{ toDo.text }}</p>
 			<a class="cursor-pointer d-flex justify-content-end"

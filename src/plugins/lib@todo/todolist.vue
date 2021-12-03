@@ -52,15 +52,21 @@ const sortedToDos = computed<IToDo[]>(() => {
 	switch(selectedFilter.value) {
 		case 'mostRecent':
 			_sortedToDos = _sortedToDos.sort((a, b) => Number(b.createdAt) - Number(a.createdAt))
+				.filter((toDo: IToDo) => !toDo.is_removed)
 			break
 		case 'deadline':
 			_sortedToDos = _sortedToDos.sort((a, b) => Number(a.deadline) - Number(b.deadline))
+				.filter((toDo: IToDo) => !toDo.is_removed)
 			break
 		case 'alphabetical':
 			_sortedToDos = _sortedToDos.sort((a, b) => a.title.localeCompare(b.title))
+				.filter((toDo: IToDo) => !toDo.is_removed)
+			break
+		case 'is_completed':
+			_sortedToDos = _sortedToDos.filter((todo) => !!todo.is_completed && !todo.is_removed)
 			break
 		default:
-			_sortedToDos = _sortedToDos.filter((todo) => todo[filterKey] == true)
+			_sortedToDos = _sortedToDos.filter((todo) => !!todo[filterKey])
 			break
 	}
 
@@ -77,7 +83,10 @@ const _loadToDoList = async () => toDoList.value = await store
 
 const _createNewToDo = async ($event: IToDo) => {
 	await store.dispatch('todoStore/createNewToDo', [$event, route.params.toDoListId])
-		.then(async () => await _loadToDoList())
+		.then(async () => {
+			await _loadToDoList()
+			isCreateNewToDoFormShown.value = false
+		})
 }
 
 

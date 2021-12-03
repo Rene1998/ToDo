@@ -36,7 +36,7 @@
 			<div class="d-flex justify-content-center w-100"
 				>
 				<ul class="alert alert-danger d-flex align-items-center col-8 mb-2 mt-2 flex-column"
-					role="alert" >
+					role="alert" v-if="isCreateNewToDoFormShown && (v.$invalid && focusedInField)">
 					<li class="error-message text-start" v-for="error of v.$silentErrors" :key="error.$uid">
 						{{ error.$message }}
 					</li>
