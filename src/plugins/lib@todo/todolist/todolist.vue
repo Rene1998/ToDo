@@ -45,7 +45,7 @@ const isCreateNewToDoFormShown = ref<boolean>(false)
 const selectedFilter = ref<Partial<Record<keyof typeof EFilterTypes, string>>>(Object.keys(EFilterTypes)[0])
 
 const sortedToDos = computed<IToDo[]>(() => {
-	let _sortedToDos = [ ...toDoList.value?.toDos]
+	let _sortedToDos = [ ...toDoList.value?.toDos ]
 	const filterKey: string = selectedFilter.value
 	const searchValue = searchBar.value
 

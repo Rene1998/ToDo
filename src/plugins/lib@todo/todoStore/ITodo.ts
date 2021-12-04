@@ -33,8 +33,14 @@ export interface ICreateNewToDoListForm {
 }
 
 export interface ICreateNewToDoForm extends ICreateNewToDoListForm {
+	created_at: number,
 	text: string,
-	deadline: string
+	deadlineDate?: string,
+	deadlineTime?: string,
+	deadline: number,
+	is_completed: boolean,
+	is_edited: boolean,
+	is_removed: boolean,
 }
 
 export enum EFilterTypes {

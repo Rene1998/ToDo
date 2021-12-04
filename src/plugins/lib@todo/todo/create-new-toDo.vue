@@ -68,11 +68,12 @@ const emit = defineEmits<{
 
 const focusedInField = ref<boolean>(false)
 const createNewToDoForm = reactive<ICreateNewToDoForm>({
-	title: '',
+	created_at: 0,
 	text: '',
+	title: '',
+	deadline: 0,
 	deadlineDate: '',
 	deadlineTime: '',
-	createdAt: 0,
 	is_removed: false,
 	is_edited: false,
 	is_completed: false
@@ -103,14 +104,13 @@ const v = useVuelidate(rules, createNewToDoForm)
 
 const emitCreateNewToDo = () => {
 	if (v.value.$invalid) return
-	createNewToDoForm.createdAt = moment().unix()
+	createNewToDoForm.created_at = moment().unix()
 	createNewToDoForm.deadline = _formatDeadline(createNewToDoForm.deadlineDate, createNewToDoForm.deadlineTime)
 	delete createNewToDoForm.deadlineDate
 	delete createNewToDoForm.deadlineTime
 	emit('createNewToDo', createNewToDoForm)
 	createNewToDoForm.title = ''
 	createNewToDoForm.text = ''
-	createNewToDoForm.deadline = ''
 }
 </script>
 

@@ -40,6 +40,7 @@ const _createNewToDoList = async (createNewToDoListForm: ICreateNewToDoListForm)
 		await store.dispatch('todoStore/createNewToDoList', createNewToDoListForm)
 		await _loadToDoLists()
 		isAlertShown.value = true
+		isCreateNewToDoListFormShown.value = false
 	} catch (err) {
 		console.error(err)
 	}

@@ -4,7 +4,7 @@
 			v-model="selectedFilter" @change="emit('filterChanged', selectedFilter)">
 			<option class="text-center" v-for="filterKey in Object.keys(EFilterTypes)"
 				:key="filterKey" :value="filterKey">
-				{{EFilterTypes[filterKey] }}
+				{{ EFilterTypes[filterKey] }}
 			</option>
 		</select>
 	</div>

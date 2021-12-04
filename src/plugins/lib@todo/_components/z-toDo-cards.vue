@@ -3,7 +3,7 @@
 		v-for="(toDo, i) in array" :key="i"
 		:class="[{'successfull-border': !toDo.is_removed && toDo.is_completed}, {'opacity-50': toDo.is_removed}]">
 		<div class="card-body">
-			<h5 class="card-title">{{ toDo.title}} </h5>
+			<h5 class="card-title">{{ toDo.title }} </h5>
 			<h6 class="card-subtitle mb-2 text-muted">
 				Created at: {{ _created_at(toDo.created_at) }}
 			</h6>
